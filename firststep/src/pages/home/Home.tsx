@@ -1,15 +1,16 @@
-export const Home = () => {
+import { useNavigate } from "react-router-dom";
 
-    return(
+export const Home = () => {
+    const navigate = useNavigate();
+
+    const HandleClick = () => {
+        navigate('/login');  // Chamando navigate diretamente
+    };
+
+    return (
         <div>
-        <p>Home</p>
-        <Button />
+            <p>Home</p>
+            <button onClick={HandleClick}>Login</button>
         </div>
     )
-}
-
-const Button = () => {
-
-    return <button>Search</button>
-
 }
