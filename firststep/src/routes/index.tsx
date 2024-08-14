@@ -5,11 +5,11 @@ export const MyRoutes = () => {
     return (
         <BrowserRouter>
             <Routes>
-            <Route path='/signin' element={<Login />} />
+                
+                <Route path='/signin' element={<Login />} />
                 <Route path='/home' element={<Home />} />
-
-
                 <Route path='*' element={<Navigate to={'/signin'}/>} />
+                
             </Routes>
         </BrowserRouter>
     );
