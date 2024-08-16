@@ -1,14 +1,26 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+
 import "./Login.css"; // Importando um arquivo CSS para estilização
+import { LoginForm } from "./components/LoginForm";
 
 export const Login = () => {
-
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
 
     const navigate = useNavigate();
 
+    // Função para lidar com mudanças nos campos de entrada
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const { name, value } = e.target;
+        if (name === 'email') {
+            setEmail(value);
+        } else if (name === 'senha') {
+            setSenha(value);
+        }
+    };
+
+    // Função para lidar com a submissão do formulário
     const handleSignIn = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault(); // Previne a atualização da página
         console.log(email);
@@ -18,31 +30,12 @@ export const Login = () => {
 
     return (
         <div className="login-container">
-            <form className="login-form" onSubmit={handleSignIn}>
-                <h2>Login</h2>
-                
-                <div className="form-group">
-                    <label>E-mail</label>
-                    <input 
-                        type="email" 
-                        value={email} 
-                        onChange={e => setEmail(e.target.value)} 
-                        required 
-                    />
-                </div>
-
-                <div className="form-group">
-                    <label>Senha</label>
-                    <input 
-                        type="password" 
-                        value={senha} 
-                        onChange={e => setSenha(e.target.value)} 
-                        required 
-                    />
-                </div>
-                
-                <button type="submit" className="login-button">Login</button>
-            </form>
+            <LoginForm
+                email={email}
+                senha={senha}
+                handleInputChange={handleInputChange}
+                handleSignIn={handleSignIn}
+            />
         </div>
     );
 };
