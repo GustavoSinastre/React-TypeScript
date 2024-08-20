@@ -1,50 +1,38 @@
-// src/context/AuthContext.tsx
+import React, { createContext, useContext, useState } from 'react';
 
-import React, { createContext, useContext, useState, useEffect } from 'react';
-
-// Define a interface para o contexto de autenticação
+// Define a estrutura do contexto de autenticação
 interface AuthContextProps {
-    isAuthenticated: boolean;
-    userRole: string | null;
-    login: (role: string) => void; // Atualize aqui
-    logout: () => void;
+    user: { role: string } | null; // Define que o usuário pode ser null ou um objeto com a propriedade role
+    login: (token: string, role: string) => void; // Função para fazer login
+    logout: () => void; // Função para fazer logout
 }
 
+// Cria o contexto de autenticação
 const AuthContext = createContext<AuthContextProps | undefined>(undefined);
 
+// Provedor de autenticação
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-    const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
-    const [userRole, setUserRole] = useState<string | null>(null);
+    // Estado para armazenar o usuário autenticado
+    const [user, setUser] = useState<{ role: string } | null>(null);
 
-    useEffect(() => {
-        const storedAuthStatus = localStorage.getItem('isAuthenticated') === 'true';
-        const storedUserRole = localStorage.getItem('userRole');
-
-        setIsAuthenticated(storedAuthStatus);
-        setUserRole(storedUserRole);
-    }, []);
-
-    const login = (role: string) => {
-        setIsAuthenticated(true);
-        setUserRole(role);
-        localStorage.setItem('isAuthenticated', 'true');
-        localStorage.setItem('userRole', role);
+    // Função para fazer login e definir o estado do usuário
+    const login = (token: string, role: string) => {
+        setUser({ role });
     };
 
+    // Função para fazer logout e limpar o estado do usuário
     const logout = () => {
-        setIsAuthenticated(false);
-        setUserRole(null);
-        localStorage.removeItem('isAuthenticated');
-        localStorage.removeItem('userRole');
+        setUser(null);
     };
 
     return (
-        <AuthContext.Provider value={{ isAuthenticated, userRole, login, logout }}>
+        <AuthContext.Provider value={{ user, login, logout }}>
             {children}
         </AuthContext.Provider>
     );
 };
 
+// Hook para acessar o contexto de autenticação
 export const useAuth = () => {
     const context = useContext(AuthContext);
     if (context === undefined) {

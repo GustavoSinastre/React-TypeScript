@@ -1,53 +1,66 @@
-// src/pages/login/Login.tsx
-
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { authenticateUser } from '../../services/AuthService'; // Verifique o caminho correto
-import { useAuth } from '../../context/AuthContext';
-import './Login.css'; // Importa o CSS
+import { authenticateUser } from '../../services/AuthService'; // Serviço de autenticação
+import { useAuth } from '../../context/AuthContext'; // Contexto de autenticação
+import './Login.css';
 
 const Login: React.FC = () => {
-    const [email, setEmail] = useState<string>('');
-    const [senha, setSenha] = useState<string>('');
-    const [error, setError] = useState<string>('');
+    // Estados para armazenar o email, a senha e possíveis mensagens de erro
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
+    
+    // Hook de navegação para redirecionar o usuário
     const navigate = useNavigate();
+    
+    // Hook de autenticação para acessar a função de login
     const { login } = useAuth();
 
+    // Função chamada ao enviar o formulário de login
     const handleLogin = async (e: React.FormEvent) => {
-        e.preventDefault();
+        e.preventDefault(); // Evita o comportamento padrão do formulário
+
         try {
-            const { token, role } = await authenticateUser(email, senha);
-            login(role);
-            navigate('/home');
+            // Tenta autenticar o usuário
+            const { message, role } = await authenticateUser(email, password);
+            if (message === 'Login successful') {
+                // Se a autenticação for bem-sucedida, atualiza o contexto e navega para a home
+                login('', role); // Atualiza o contexto com o papel do usuário
+                navigate('/home'); // Redireciona para a página inicial
+            } else {
+                setError('Invalid credentials'); // Define a mensagem de erro
+            }
         } catch (error) {
-            setError('Usuário ou senha inválidos');
+            setError('An error occurred'); // Define a mensagem de erro em caso de exceção
         }
     };
 
     return (
         <div className="login-container">
-            <form onSubmit={handleLogin} className="login-form">
-                <h2>Login</h2>
+            <h2>Login</h2>
+            <form className="login-form" onSubmit={handleLogin}>
                 <div className="form-group">
                     <label htmlFor="email">Email:</label>
                     <input
-                        id="email"
                         type="email"
+                        id="email"
                         value={email}
-                        onChange={(e) => setEmail(e.target.value)}
+                        onChange={(e) => setEmail(e.target.value)} // Atualiza o estado do email
+                        required
                     />
                 </div>
                 <div className="form-group">
-                    <label htmlFor="senha">Senha:</label>
+                    <label htmlFor="password">Password:</label>
                     <input
-                        id="senha"
                         type="password"
-                        value={senha}
-                        onChange={(e) => setSenha(e.target.value)}
+                        id="password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)} // Atualiza o estado da senha
+                        required
                     />
                 </div>
                 <button type="submit" className="login-button">Login</button>
-                {error && <p className="error-message">{error}</p>}
+                {error && <p className="error-message">{error}</p>} {/* Exibe a mensagem de erro se houver */}
             </form>
         </div>
     );
