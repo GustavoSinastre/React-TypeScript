@@ -1,5 +1,3 @@
-// src/routes/index.tsx
-
 import React from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import Home from '../pages/home/Home'; // Importação padrão
@@ -9,12 +7,12 @@ import PrivateRoute from './PrivateRoute'; // Certifique-se de que o caminho est
 const AppRoutes: React.FC = () => {
     return (
         <Routes>
-            <Route path="/signin" element={<Login />} />
+            <Route path="/signin" element={<Login />} /> {/* Rota pública de login */}
             <Route 
                 path="/home" 
                 element={<PrivateRoute element={<Home />} requiredRole="admin" />} 
-            />
-            <Route path="*" element={<Navigate to="/signin" />} />
+            /> {/* Rota protegida */}
+            <Route path="*" element={<Navigate to="/signin" />} /> {/* Redireciona qualquer rota não definida para /signin */}
         </Routes>
     );
 };
