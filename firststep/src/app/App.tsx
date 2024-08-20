@@ -1,9 +1,9 @@
 import React from 'react';
-import { MyRoutes } from '../routes';
+import { AppRoutes } from '../routes';
 
 const App = () => {
   return (
-    <MyRoutes />
+    <AppRoutes />
   );
 }
 
