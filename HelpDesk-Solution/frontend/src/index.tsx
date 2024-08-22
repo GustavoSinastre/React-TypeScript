@@ -1,16 +1,16 @@
-// src/index.tsx
 import React from 'react';
-import ReactDOM from 'react-dom/client';
-import App from './app/App'; // Importa o App como exportação padrão
-import { BrowserRouter as Router } from 'react-router-dom'; // Importe o BrowserRouter
+import ReactDOM from 'react-dom';
+import { BrowserRouter } from 'react-router-dom';
+import App from './app/App'; // Certifique-se de que o caminho está correto
 import reportWebVitals from './reportWebVitals';
 
-ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
+ReactDOM.render(
     <React.StrictMode>
-        <Router>
+        <BrowserRouter>
             <App />
-        </Router>
-    </React.StrictMode>
+        </BrowserRouter>
+    </React.StrictMode>,
+    document.getElementById('root')
 );
 
 reportWebVitals();
