@@ -5,33 +5,27 @@ import { useAuth } from '../../context/AuthContext'; // Contexto de autenticaç�
 import './Login.css';
 
 const Login: React.FC = () => {
-    // Estados para armazenar o email, a senha e possíveis mensagens de erro
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
-    
-    // Hook de navegação para redirecionar o usuário
     const navigate = useNavigate();
-    
-    // Hook de autenticação para acessar a função de login
     const { login } = useAuth();
 
-    // Função chamada ao enviar o formulário de login
     const handleLogin = async (e: React.FormEvent) => {
-        e.preventDefault(); // Evita o comportamento padrão do formulário
+        e.preventDefault();
 
         try {
-            // Tenta autenticar o usuário
-            const { message, role } = await authenticateUser(email, password);
+            const { message, access_token, role } = await authenticateUser(email, password);
             if (message === 'Login successful') {
-                // Se a autenticação for bem-sucedida, atualiza o contexto e navega para a home
-                login('', role); // Atualiza o contexto com o papel do usuário
-                navigate('/home'); // Redireciona para a página inicial
+                login(access_token, role); // Atualiza o contexto com o papel do usuário
+
+                // Redireciona todos os usuários para a página de home
+                navigate('/home');
             } else {
-                setError('Invalid credentials'); // Define a mensagem de erro
+                setError('Invalid credentials');
             }
         } catch (error) {
-            setError('An error occurred'); // Define a mensagem de erro em caso de exceção
+            setError('An error occurred');
         }
     };
 
@@ -45,7 +39,7 @@ const Login: React.FC = () => {
                         type="email"
                         id="email"
                         value={email}
-                        onChange={(e) => setEmail(e.target.value)} // Atualiza o estado do email
+                        onChange={(e) => setEmail(e.target.value)}
                         required
                     />
                 </div>
@@ -55,12 +49,12 @@ const Login: React.FC = () => {
                         type="password"
                         id="password"
                         value={password}
-                        onChange={(e) => setPassword(e.target.value)} // Atualiza o estado da senha
+                        onChange={(e) => setPassword(e.target.value)}
                         required
                     />
                 </div>
                 <button type="submit" className="login-button">Login</button>
-                {error && <p className="error-message">{error}</p>} {/* Exibe a mensagem de erro se houver */}
+                {error && <p className="error-message">{error}</p>}
             </form>
         </div>
     );

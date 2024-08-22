@@ -1,28 +1,26 @@
+// src/context/AuthContext.tsx
 import React, { createContext, useContext, useState } from 'react';
 
-// Define a estrutura do contexto de autenticação
 interface AuthContextProps {
-    user: { role: string } | null; // Define que o usuário pode ser null ou um objeto com a propriedade role
-    login: (token: string, role: string) => void; // Função para fazer login
-    logout: () => void; // Função para fazer logout
+    user: { role: string } | null;
+    login: (token: string, role: string) => void;
+    logout: () => void;
 }
 
-// Cria o contexto de autenticação
 const AuthContext = createContext<AuthContextProps | undefined>(undefined);
 
-// Provedor de autenticação
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-    // Estado para armazenar o usuário autenticado
     const [user, setUser] = useState<{ role: string } | null>(null);
 
-    // Função para fazer login e definir o estado do usuário
     const login = (token: string, role: string) => {
         setUser({ role });
+        // Opcionalmente, armazene o token em localStorage ou sessionStorage
+        localStorage.setItem('token', token);
     };
 
-    // Função para fazer logout e limpar o estado do usuário
     const logout = () => {
         setUser(null);
+        localStorage.removeItem('token');
     };
 
     return (
@@ -32,7 +30,6 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     );
 };
 
-// Hook para acessar o contexto de autenticação
 export const useAuth = () => {
     const context = useContext(AuthContext);
     if (context === undefined) {

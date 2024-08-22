@@ -1,8 +1,6 @@
-// src/app/App.tsx
-
 import React from 'react';
-import { AuthProvider } from '../context/AuthContext'; // Certifique-se de que o caminho está correto
-import AppRoutes from '../routes'; // Corrija o caminho se necessário
+import { AuthProvider } from '../context/AuthContext'; 
+import AppRoutes from '../routes/Routes'; 
 
 const App: React.FC = () => {
     return (
@@ -12,4 +10,4 @@ const App: React.FC = () => {
     );
 };
 
-export default App; // Exportação padrão
+export default App;
