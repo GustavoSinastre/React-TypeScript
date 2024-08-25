@@ -3,6 +3,10 @@ const OpenTickets = () => {
     return (
         <div>
             {/* Conteúdo do componente */}
+
+            <div>
+                Helo World
+            </div>
         </div>
     );
 };

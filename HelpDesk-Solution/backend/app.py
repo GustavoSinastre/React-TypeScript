@@ -28,7 +28,6 @@ def login():
 
     user = User.query.filter_by(email=email).first()
     if user and check_password_hash(user.password, password):
-        # Cria um token JWT
         access_token = create_access_token(identity={'email': email, 'role': user.role})
         return jsonify({'message': 'Login successful', 'access_token': access_token, 'role': user.role})
     else:

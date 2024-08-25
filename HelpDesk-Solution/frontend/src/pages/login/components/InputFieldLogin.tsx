@@ -9,11 +9,10 @@ interface InputFieldLoginProps {
     label: string;
 }
 
-export const InputFieldLogin: React.FC<InputFieldLoginProps> = 
-({ id, type, name, value, onChange, label }) => {
+export const InputFieldLogin: React.FC<InputFieldLoginProps> = ({ id, type, name, value, onChange, label }) => {
     return (
         <div className="form-group">
-            <label htmlFor={id}>{label}</label>
+            <label htmlFor={id}>{label}:</label>
             <input
                 id={id}
                 type={type}

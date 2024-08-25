@@ -28,7 +28,8 @@ const AppRoutes: React.FC = () => {
                 element={<PrivateRoute element={<OpenTickets />} />} 
             />
 
-            <Route path="*" element={<Navigate to="/signin" />} /> {/* Redireciona qualquer rota não definida para /signin */}
+            {/* Redireciona qualquer rota não definida para /signin */}
+            <Route path="*" element={<Navigate to="/signin" />} />
         </Routes>
     );
 };
