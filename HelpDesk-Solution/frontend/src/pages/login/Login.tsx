@@ -31,7 +31,7 @@ const Login: React.FC = () => {
         try {
             const { message, access_token, role } = await authenticateUser(email, password);
             if (message === 'Login successful') {
-                login(access_token, role);
+                login(access_token, role);  // Passe apenas os parâmetros necessários
                 // A navegação para home agora será tratada pelo useEffect
             } else {
                 setError('Invalid credentials');
