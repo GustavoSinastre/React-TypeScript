@@ -1,10 +1,12 @@
+// src/routes/Routes.tsx
 import React from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 
 import Home from '../pages/home/Home';
+import OpenTickets from '../pages/Assignment/OpenTickets';
 import Login from '../pages/login/Login';
-import Register from '../pages/register/UsersRegister'; // Certifique-se de que o caminho está correto
+import Register from '../pages/register/UsersRegister';
 import PrivateRoute from './PrivateRoute';
 
 const AppRoutes: React.FC = () => {
@@ -14,13 +16,20 @@ const AppRoutes: React.FC = () => {
         <Routes>
             <Route path="/signin" element={<Login />} /> {/* Rota pública de login */}
             
-            {/* Rota protegida para home e, dependendo do papel do usuário, outras páginas */}
+            {/* Rota protegida para home */}
             <Route 
                 path="/home" 
                 element={<PrivateRoute element={<Home />} />} 
             />
 
-            <Route path="*" element={<Navigate to="/signin" />} /> {/* Redireciona qualquer rota não definida para /signin */}
+            {/* Rota protegida para tickets */}
+            <Route 
+                path="/ticket" 
+                element={<PrivateRoute element={<OpenTickets />} />} 
+            />
+
+            {/* Redireciona qualquer rota não definida para /signin */}
+            <Route path="*" element={<Navigate to="/signin" />} />
         </Routes>
     );
 };
