@@ -13,17 +13,10 @@ const DeleteUser: React.FC = () => {
 
     const { user } = useAuth();  // Use o hook de autenticação para obter o token
 
-    const handleSubmit = async (e: React.FormEvent) => {
+    const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        try {
-            // Exemplo de confirmação simples
-            setEmailToDelete(email);
-            setOpenDialog(true);
-        } catch (error) {
-            setSnackbarMessage('Failed to delete user.');
-            setSnackbarSeverity('error');
-            setOpenSnackbar(true);
-        }
+        setEmailToDelete(email);
+        setOpenDialog(true);
     };
 
     const handleDelete = async () => {
@@ -38,6 +31,7 @@ const DeleteUser: React.FC = () => {
             if (!response.ok) throw new Error('Failed to delete user');
             setSnackbarMessage('User deleted successfully!');
             setSnackbarSeverity('success');
+            setEmail(''); // Limpa o campo de email após exclusão bem-sucedida
         } catch (error) {
             setSnackbarMessage('Failed to delete user.');
             setSnackbarSeverity('error');

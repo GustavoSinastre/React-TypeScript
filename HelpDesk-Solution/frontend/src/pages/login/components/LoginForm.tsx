@@ -23,6 +23,7 @@ export const LoginForm: React.FC<LoginFormProps> =
                 value={email}
                 onChange={handleInputChange}
                 label="E-mail"
+                className="input-field"
             />
 
             <InputFieldLogin
@@ -32,6 +33,7 @@ export const LoginForm: React.FC<LoginFormProps> =
                 value={senha}
                 onChange={handleInputChange}
                 label="Senha"
+                className="input-field"
             />
 
             {error && <p className="error-message">{error}</p>} {/* Exibe a mensagem de erro */}

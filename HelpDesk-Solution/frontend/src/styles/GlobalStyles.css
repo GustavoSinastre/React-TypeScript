@@ -1,0 +1,57 @@
+/*src/styles/GlobalStyles.css*/
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+}
+
+/* Centralizar o conteúdo da página */
+.container {
+    margin: 2rem auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 1200px;
+}
+
+/* Estilos para o título e botão 'Home' */
+.title-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1200px;
+    margin-bottom: 2rem;
+}
+
+.title {
+    margin: 0;
+    color: #333;
+}
+
+.home-button {
+    margin-left: auto;
+}
+
+/* Estilos para os itens de grid */
+.grid-item {
+    display: flex;
+    justify-content: center;
+}
+
+/* Estilos para os papéis */
+.paper {
+    padding: 1.5rem;
+    width: 100%;
+    max-width: 400px;
+    box-sizing: border-box;
+    margin: auto;
+}
+
+/* Estilos para o Typography dentro do Paper */
+.paper h6 {
+    margin-bottom: 1rem;
+    color: #333;
+}

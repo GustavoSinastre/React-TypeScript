@@ -9,13 +9,13 @@ interface PrivateRouteProps {
 }
 
 const PrivateRoute: React.FC<PrivateRouteProps> = ({ element, requiredRole }) => {
-    const { user } = useAuth();
+    const { user, isAuthenticated } = useAuth();
 
-    if (!user) {
+    if (!isAuthenticated) {
         return <Navigate to="/signin" />;
     }
 
-    if (requiredRole && user.role !== requiredRole) {
+    if (requiredRole && user?.role !== requiredRole) {
         return <Navigate to="/home" />;
     }
 
