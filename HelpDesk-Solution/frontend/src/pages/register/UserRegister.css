@@ -1,0 +1,54 @@
+/* UserRegister.css */
+
+/* Estilos específicos para a página de registro */
+.container {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 1200px;
+    padding: 1rem;
+    box-sizing: border-box;
+}
+
+/* Estilos para o título e botão 'Home' */
+.title-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1200px;
+    margin-bottom: 2rem;
+}
+
+.title {
+    margin: 0;
+    color: #333;
+}
+
+.home-button {
+    margin-left: auto;
+}
+
+/* Estilos para os itens de grid */
+.grid-item {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+/* Estilos para os papéis */
+.paper {
+    padding: 1.5rem;
+    width: 100%;
+    max-width: 400px;
+    box-sizing: border-box;
+    margin: auto;
+}
+
+/* Estilos para o Typography dentro do Paper */
+.paper h6 {
+    margin-bottom: 1rem;
+    color: #333;
+}

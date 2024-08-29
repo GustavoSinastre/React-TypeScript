@@ -1,62 +1,49 @@
-/* Estilos gerais para o corpo da página */
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
+/* src/pages/login/Login.css */
+
+/* Centraliza o container de login */
+.login-container {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    margin: 0;
+    background-color: #f0f0f0; /* Cor de fundo clara para contraste */
+    padding: 1rem;
 }
 
-/* Estilos para o container de login */
-.login-container {
-    background-color: #fff;
-    padding: 2rem;  /* Padding dentro do container */
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    max-width: 400px;
-    width: 100%;
-}
-
-/* Estilos para o formulário de login */
 .login-form {
-    display: flex;
-    flex-direction: column;
+    background-color: #fff; /* Fundo branco para o formulário */
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    width: 100%;
+    max-width: 400px; /* Limita a largura do formulário */
+    box-sizing: border-box; /* Inclui padding e borda na largura total */
 }
 
-/* Estilos para o título do formulário */
-.login-form h2 {
+.form-title {
+    text-align: center;
     margin-bottom: 1.5rem;
     color: #333;
-    text-align: center;
 }
 
-/* Estilos para grupos de campos de formulário */
 .form-group {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 1.5rem; /* Espaçamento entre grupos de formulários */
+    margin-bottom: 1rem;
 }
 
-/* Estilos para os rótulos dos campos */
-.form-group label {
-    margin-bottom: 0.5rem;
-    color: #666;
-}
-
-/* Estilos para os campos de entrada */
-.form-group input {
-    width: calc(100% - 1.5rem); /* Garante que o input tenha margem igual dentro do container */
+.input-field {
+    width: 100%;
     padding: 0.75rem;
     border: 1px solid #ccc;
     border-radius: 4px;
-    font-size: 1rem;
-    margin-left: auto; /* Mantém a margem à esquerda alinhada */
-    margin-right: auto; /* Mantém a margem à direita alinhada */
+    box-sizing: border-box;
 }
 
-/* Estilos para o botão de login */
+.error-message {
+    color: red;
+    margin-top: 0.5rem;
+    text-align: center; /* Centraliza a mensagem de erro */
+}
+
 .login-button {
     width: 100%;
     padding: 0.75rem;
@@ -64,19 +51,6 @@ body {
     color: #fff;
     border: none;
     border-radius: 4px;
-    font-size: 1rem;
     cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-/* Estilos para o botão de login quando o cursor está sobre ele */
-.login-button:hover {
-    background-color: #0056b3;
-}
-
-/* Estilos para mensagens de erro */
-.error-message {
-    color: red;
-    font-size: 0.875rem;
-    margin-top: 1rem;
+    font-size: 1rem;
 }
