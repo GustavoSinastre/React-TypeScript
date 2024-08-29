@@ -11,12 +11,18 @@ const Home: React.FC = () => {
   const navigate = useNavigate();
   const { user } = useAuth();
 
+  // Log user details for debugging
+  console.log('User:', user);
+
   const menuItems = [
-    ...(user?.role === 'admin' ? [{ title: 'Cadastro', icon: <Person style={{ fontSize: 40 }} />, path: '/cadastro' }] : []),
+    ...(user?.role === 'admin' ? [{ title: 'Cadastro', icon: <Person style={{ fontSize: 40 }} />, path: '/register' }] : []),
     { title: 'Chamados', icon: <Assignment style={{ fontSize: 40 }} />, path: '/ticket' },
     { title: 'Aprovações', icon: <CheckCircle style={{ fontSize: 40 }} />, path: '/aprovacoes' },
     { title: 'Tratamento', icon: <Build style={{ fontSize: 40 }} />, path: '/tratamento' },
   ];
+
+  // Log menu items for debugging
+  console.log('Menu Items:', menuItems);
 
   return (
     <div style={{ padding: '20px' }}>
@@ -32,7 +38,10 @@ const Home: React.FC = () => {
             <MenuCard
               title={item.title}
               icon={item.icon}
-              onClick={() => navigate(item.path)}
+              onClick={() => {
+                console.log('Navigating to:', item.path); // Log navigation path
+                navigate(item.path);
+              }}
             />
           </Grid>
         ))}

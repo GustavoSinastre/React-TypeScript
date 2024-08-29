@@ -6,8 +6,8 @@ import { useAuth } from '../context/AuthContext';
 import Home from '../pages/home/Home';
 import OpenTickets from '../pages/Assignment/OpenTickets';
 import Login from '../pages/login/Login';
-import Register from '../pages/register/UsersRegister';
 import PrivateRoute from './PrivateRoute';
+import UserRegister from '../pages/register/UserRegister';
 
 const AppRoutes: React.FC = () => {
     const { user } = useAuth();
@@ -26,6 +26,11 @@ const AppRoutes: React.FC = () => {
             <Route 
                 path="/ticket" 
                 element={<PrivateRoute element={<OpenTickets />} />} 
+            />
+
+            <Route 
+                path="/register"
+                element={<PrivateRoute element={<UserRegister />} />}
             />
 
             {/* Redireciona qualquer rota não definida para /signin */}
