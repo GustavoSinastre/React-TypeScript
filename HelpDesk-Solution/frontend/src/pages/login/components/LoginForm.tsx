@@ -14,7 +14,7 @@ export const LoginForm: React.FC<LoginFormProps> =
 ({ email, senha, handleInputChange, handleSignIn, error }) => {
     return (
         <form className="login-form" onSubmit={handleSignIn}>
-            <h2>Login</h2>
+            <h2>Faça o seu Login</h2>
 
             <InputFieldLogin
                 id="email"
